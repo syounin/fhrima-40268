@@ -45,13 +45,13 @@ Things you may want to cover:
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | item_name          | string | null: false |
-| item_price         | integer | null: false |
-| delivery_cost      | integer | ActiveHash |
+| item_price_id      | integer | null: false |
+| delivery_cost_id   | integer | ActiveHash |
 | item_explanation   | text    | null: false |
-| item_condition     | integer | ActiveHash |
-| prefecture         | integer | ActiveHash  |
-| delivery_days      | integer | ActiveHash |
-| category           | integer | ActiveHash |
+| item_condition_id  | integer | ActiveHash |
+| prefecture_id      | integer | ActiveHash  |
+| delivery_days_id   | integer | ActiveHash |
+| category_id        | integer | ActiveHash |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -78,7 +78,7 @@ Things you may want to cover:
 | ------------------ | ------ | ----------- |
 | buyer              | references | null: false, foreign_key: true |
 | post_code          | string | null: false |
-| prefecture         | integer | ActiveHash |
+| prefecture_id      | integer | ActiveHash |
 | city               | string | null: false |
 | address            | string | null: false |
 | building           | string |             |
