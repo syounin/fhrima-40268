@@ -50,7 +50,7 @@ Things you may want to cover:
 | item_explanation   | text    | null: false |
 | item_condition_id  | integer | null: false |
 | prefecture_id      | integer | null: false  |
-| delivery_days_id   | integer | null: false |
+| delivery_day_id   | integer | null: false |
 | category_id        | integer | null: false |
 | user               | references | null: false, foreign_key: true |
 
