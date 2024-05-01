@@ -31,27 +31,31 @@ Things you may want to cover:
 | encrypted_password | string | null: false |
 | name1              | string | null: false |
 | name2              | string | null: false |
-| birth              | string | null: false |
+| name3              | string | null: false |
+| name4              | string | null: false |
+| birth              | date   | null: false |
 
 ### Association
 
-- has_many :items
-- has_many :buyers
+- has_many :item
+- has_many :buyer
 
 ## itemsテーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item_image         | string | null: false |
 | item_name          | string | null: false, unique: true |
-| item_price         | string | null: false |
-| delivery           | string   | null: false |
+| item_price         | integer | null: false |
+| delivery_cost      | integer | null: false |
+| item_condition     | string | null: false |
+| prefectures        | string | activehash  |
+| delivery_days      | string | null: false |
 | user               | reference | foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_one :buyers
+- belongs_to :user
+- has_one :buyer
 
 ## buyersテーブル
 
@@ -62,21 +66,22 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
-- has_one :customs
+- belongs_to :item
+- belongs_to :user
+- has_one :custom
 
 ## customsテーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
+| buyer              | reference | null: false, foreign_key: true |
 | post_code          | string | null: false |
-| prefectures        | string | null: false |
+| prefectures        | string | activehash  |
 | city               | string | null: false |
 | address            | string | null: false |
-| building           | string | null: true  |
+| building           | string |             |
 | telephone_number   | string | null: false |
 
 ### Association
 
-- belongs_to :buyers
+- belongs_to :buyer
