@@ -45,7 +45,7 @@ Things you may want to cover:
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | item_name          | string | null: false |
-| item_price_id      | integer | null: false |
+| item_price         | integer | null: false |
 | delivery_cost_id   | integer | ActiveHash |
 | item_explanation   | text    | null: false |
 | item_condition_id  | integer | ActiveHash |
