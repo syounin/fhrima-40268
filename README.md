@@ -29,29 +29,30 @@ Things you may want to cover:
 | nickname           | string | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
-| name1              | string | null: false |
-| name2              | string | null: false |
-| name3              | string | null: false |
-| name4              | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
 | birth              | date   | null: false |
 
 ### Association
 
-- has_many :item
-- has_many :buyer
+- has_many :items
+- has_many :buyers
 
 ## itemsテーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item_name          | string | null: false, unique: true |
+| item_name          | string | null: false |
 | item_price         | integer | null: false |
-| delivery_cost      | integer | null: false |
-| item_condition     | string | null: false |
-| prefectures        | string | activehash  |
-| delivery_days      | string | null: false |
-| category           | string | null: false |
-| user               | reference | null: false, foreign_key: true |
+| delivery_cost      | integer | ActiveHash |
+| item_explanation   | text    | null: false |
+| item_condition     | integer | ActiveHash |
+| prefecture         | integer | ActiveHash  |
+| delivery_days      | integer | ActiveHash |
+| category           | integer | ActiveHash |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -62,8 +63,8 @@ Things you may want to cover:
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| user            | reference | null: false, foreign_key: true |
-| items           | reference | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -75,9 +76,9 @@ Things you may want to cover:
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| buyer              | reference | null: false, foreign_key: true |
+| buyer              | references | null: false, foreign_key: true |
 | post_code          | string | null: false |
-| prefectures        | string | activehash  |
+| prefecture         | integer | ActiveHash |
 | city               | string | null: false |
 | address            | string | null: false |
 | building           | string |             |
