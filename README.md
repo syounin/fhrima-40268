@@ -50,6 +50,7 @@ Things you may want to cover:
 | item_condition     | string | null: false |
 | prefectures        | string | activehash  |
 | delivery_days      | string | null: false |
+| category           | string | null: false |
 | user               | reference | null: false, foreign_key: true |
 
 ### Association
