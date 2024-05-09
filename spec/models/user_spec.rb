@@ -45,21 +45,25 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
     end
+    
     it 'last_nameが全角文字でないと登録できない' do
       @user.last_name = 'aoao'
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
     end
+    
     it 'first_nameが全角文字でないと登録できない' do
       @user.first_name = 'aoao'
       @user.valid?
       expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
     end
+    
     it 'last_name_kanaがカナ文字でないと登録できない' do
       @user.last_name_kana = 'aoao'
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name kana カナ文字を使用してください")
     end
+    
     it 'first_name_kanaがカナ文字でないと登録できない' do
       @user.first_name_kana = 'aoao'
       @user.valid?
