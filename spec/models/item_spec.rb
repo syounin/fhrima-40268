@@ -8,7 +8,7 @@ RSpec.describe Item, type: :model do
     describe '商品の' do
       context '出品ができる時' do
         it '正常に出品できる' do
-          @item.item_name = '物'
+          
           @item.category_id = 2
           @item.item_condition_id = 2
           @item.delivery_cost_id = 2
@@ -81,7 +81,7 @@ RSpec.describe Item, type: :model do
         it 'ユーザーが紐づいてなければ投稿できない' do
           @item.user = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("User can't be blank")
+          expect(@item.errors.full_messages).to include("User must exist")
         end
       end
     end
