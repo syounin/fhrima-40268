@@ -78,6 +78,11 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Item price must be less than or equal to 9999999")
         end
+        it 'ユーザーが紐づいてなければ投稿できない' do
+          @item.user = nil
+          @item.valid?
+          expect(@item.errors.full_messages).to include("User can't be blank")
+        end
       end
     end
 end
