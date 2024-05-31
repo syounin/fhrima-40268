@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_item, except: [:index]
 
   def index
+    @items = Item.all.sort.reverse
   end
 
   def new
