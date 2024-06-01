@@ -25,6 +25,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if user_signed_in? && current_user.id == @items.user_id
+    @items.destroy
+    redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
   def new
     @items = Item.new
   end
