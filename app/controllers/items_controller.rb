@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :move_to_item, except: [:index]
+  before_action :move_to_item, except: [:index, :show]
 
   def index
     @items = Item.all.sort.reverse
+  end
+
+  def show
+    @items = Item.find(params[:id])
   end
 
   def new
