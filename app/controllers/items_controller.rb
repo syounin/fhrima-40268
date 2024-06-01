@@ -9,6 +9,19 @@ class ItemsController < ApplicationController
     @items = Item.find(params[:id])
   end
 
+  def edit
+    @items = Item.find(params[:id])
+  end
+
+  def update
+    @items = Item.find(params[:id])
+    if @items.update(item_params)
+    redirect_to item_path(@items.id)
+    else
+    render :edit, status: :unprocessable_entity
+    end
+  end
+
   def new
     @items = Item.new
   end
