@@ -45,33 +45,33 @@
     
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @items.item_explanation %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= User.find(@items.user_id).nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= CategoryGenre.find(@items.category_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <td class="detail-value"><%= ItemConditionGenre.find(@items.item_condition_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= DeliveryCostGenre.find(@items.delivery_cost_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= PrefectureGenre.find(@items.prefecture_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= DeliveryDayGenre.find(@items.delivery_day_id).name %></td>
         </tr>
       </tbody>
     </table>
