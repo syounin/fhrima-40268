@@ -10,11 +10,11 @@
     <div class="item-img-content">
       <%= image_tag @items.image, class: "item-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%# if '商品が購入済みである' %>
+      <% if @items.buyer.present?  %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# end %>
+      <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
@@ -28,7 +28,7 @@
     </div>
 
     
-    <% if user_signed_in? %><%# かつ商品が出品中である%>
+    <% if user_signed_in? && @items.buyer == nil %><%# かつ商品が出品中である%>
       <% if current_user.id == @items.user_id  %>
 
     <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
@@ -38,7 +38,7 @@
 
      <% else %>
     
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", item_buyers_path(@items.id), data: { turbo: false }, class:"item-red-btn"%>
     
 
       <% end %>
