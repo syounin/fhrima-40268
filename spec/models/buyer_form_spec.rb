@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe BuyerForm, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @buyer = FactoryBot.build(:buyer_form, user_id: user.id)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @buyer = FactoryBot.build(:buyer_form, user_id: @user.id, item_id: @item.id )
+  
   end
 
   describe '商品の' do
@@ -64,6 +66,35 @@ RSpec.describe BuyerForm, type: :model do
         expect(@buyer.errors.full_messages).to include("Token can't be blank")
       end
 
+      it "電話番号が半角数字以外が含まれている場合は購入できない" do
+        @buyer.telephone_number = '１２３４'
+        @buyer.valid?
+        expect(@buyer.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it "9桁以下だと購入できない" do
+        @buyer.telephone_number = '123'
+        @buyer.valid?
+        expect(@buyer.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it "12桁以上だと購入できない" do
+        @buyer.telephone_number = '1234567891011'
+        @buyer.valid?
+        expect(@buyer.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it "userが紐づいていないと購入できない" do
+        @buyer.user_id = nil
+        @buyer.valid?
+        expect(@buyer.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "itemが紐づいていないと購入できない" do
+        @buyer.item_id = nil
+        @buyer.valid?
+        expect(@buyer.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end

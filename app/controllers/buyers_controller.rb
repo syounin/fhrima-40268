@@ -1,15 +1,14 @@
 class BuyersController < ApplicationController
   before_action :move_to_buyer
+  before_action :items_find
 
   def index
-    @items = Item.find(params[:item_id])
     redirect_to root_path unless current_user.id != @items.user.id && @items.buyer.nil?
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buyerform = BuyerForm.new
   end
 
   def create
-    @items = Item.find(params[:item_id])
     @buyerform = BuyerForm.new(buyer_params)
     if @buyerform.valid?
       pay_item
@@ -17,7 +16,6 @@ class BuyersController < ApplicationController
       redirect_to root_path
     else
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-     @items = Item.find(params[:item_id])
       render :index
       end
   end
@@ -40,5 +38,8 @@ class BuyersController < ApplicationController
       unless user_signed_in?
         redirect_to user_session_url
       end
+    end
+    def items_find
+      @items = Item.find(params[:item_id])
     end
 end

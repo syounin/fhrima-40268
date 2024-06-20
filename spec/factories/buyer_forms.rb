@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :buyer_form do
-    item_id { 1 }
-    user_id { 1 }
+
     post_code { '123-1234' }
     prefecture_id { Faker::Number.between(from: 1, to: 47) }
     city { Faker::Address.city }
@@ -9,5 +8,9 @@ FactoryBot.define do
     building { Faker::Address.building_number }
     telephone_number { "0" + Faker::Number.between(from: 100000000, to: 9999999999).to_s }
     token {"tok_abcdefghijk00000000000000000"}
+
+    association :user_id
+    association :item_id
+
   end
 end

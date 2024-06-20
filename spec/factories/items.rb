@@ -2,12 +2,12 @@ FactoryBot.define do
   factory :item do
     item_name                 {Faker::Name.initials(number: 3)}
     item_price                {Faker::Number.between(from: 300, to: 9999999) }
-    delivery_cost_id          {DeliveryCostGenre.all.sample}
+    delivery_cost_id          { 2 }
     item_explanation          {Faker::Lorem.sentence}
-    item_condition_id         {ItemConditionGenre.all.sample}
-    prefecture_id             {PrefectureGenre.all.sample}
-    delivery_day_id           {DeliveryDayGenre.all.sample}
-    category_id               {CategoryGenre.all.sample}
+    item_condition_id         { 2 }
+    prefecture_id             { 2 }
+    delivery_day_id           { 2 }
+    category_id               { 2 }
 
     association :user
 
