@@ -1,7 +1,10 @@
 class BuyersController < ApplicationController
+  before_action :move_to_buyer
+
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @items = Item.find(params[:item_id])
+    redirect_to root_path unless current_user.id != @items.user.id && @items.buyer.nil?
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buyerform = BuyerForm.new
   end
 
@@ -31,5 +34,11 @@ class BuyersController < ApplicationController
         card: buyer_params[:token],    # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
+    end
+
+    def move_to_buyer
+      unless user_signed_in?
+        redirect_to user_session_url
+      end
     end
 end
